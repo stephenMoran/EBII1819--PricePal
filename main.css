@@ -1,15 +1,27 @@
 * {
-    background-color: #f4a442;
     width: 300px;
-    border-radius: 30px;
 }
+/*
 .extension {
-
-  background-color: #f4a442;
-
 }
+*/
 
 .header {
   text-align: center;
-  color: white;
+}
+
+
+.productList{
+  background-color: white;
+}
+
+body {
+    background: linear-gradient(0deg, #8c8c8c, #fff);
+    background-size: 400% 400%;
+    animation: Gradient 10s linear infinite;
+}
+@keyframes Gradient {
+    0%{background-position:50% 0%}
+    50%{background-position:50% 100%}
+    100%{background-position:50% 0%}
 }

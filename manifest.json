@@ -7,10 +7,10 @@
     "default_popup": "popup.html"
   },
   "permissions": ["activeTab"],
-  "conten_scripts": [
-    "matches": [
-      "<all_urls>"
-    ],
-    "js": ["content.js"]
+  "content_scripts": [
+    {
+     "matches": ["http://www.amazon.com/*"],
+     "js": ["content.js"]
+    }
   ]
 }
