@@ -1,9 +1,22 @@
 //Script to alter the content of the browser
+//Loaded every time a new page is opened
+//Amazon associates id : pricepal00-20
+//http://www.amazon.com/dp/{ASIN}/?tag={trackingId}
 
-//console.log("hello");
-//console.console.log(price);
+//Listener for messages from background script
+chrome.runtime.onMessage.addListener(request => {
+  if (request.type === 'getHeadlines') {
+      // DO SOMETHING
+  }
+});
+
+
+
+
+/*
 var url = "https://www.amazon.co.uk/Kaspersky-Security-Devices-Android-Activation/dp/B07HMFC693/ref=sr_1_4?ie=UTF8&qid=1539540217&sr=8-4&keywords=B074SNVGV3%7CB074SP6DLW%7CB074SP8KYT%7CB074SP9XBX%7CB074SP8KYW%7CB074SPB1FL%7CB07HMFC693%7CB074SPC5TK%7CB074SNVGV1%7CB074SNZJHF";
 var id = this.getProductIDFromAmazonProductPageUrl(url);
+console.log(id);
 var url2 = this.generateAmazonProductPageUrlForCountry(id, 'uk');
 var hi = this.getPrice(url2);
 function getPrice(url)
@@ -78,3 +91,4 @@ function generateAmazonProductPageUrlForCountry(productID, country) {
   	}
   	return parseFloat(res)
   }
+*/
