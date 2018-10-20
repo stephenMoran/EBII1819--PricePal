@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Price from './components/Price'
 
 class App extends Component {
+
+  constructor() {
+          super()
+          this.state = {
+
+          }
+      }
+
   render() {
     return (
       <div className="App">
