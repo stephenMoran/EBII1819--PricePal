@@ -7,15 +7,13 @@
     "default_popup": "index.html"
   },
   "icons": {
-  "16": "logo-small.png",
-  "48": "logo-small.png",
-  "128": "logo-small.png"
+  "16": "./imgs/logo-small.png"
   },
   "permissions": ["activeTab"],
   "content_scripts": [
     {
      "matches": ["*://www.amazon.com/*", "*://www.amazon.de/*", "*://www.amazon.fr/*", "*://www.amazon.it/*", "*://www.amazon.es/*", "*://www.amazon.co.uk/*"],
-     "js": ["content.js"]
+     "js": ["./js/content.js"]
     }
   ]
 }
