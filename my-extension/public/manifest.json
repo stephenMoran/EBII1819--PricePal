@@ -8,5 +8,11 @@
   },
   "icons": {
   "16": "./imgs/logo-small.png"
-  }
+},
+"content_scripts": [
+   {
+    "matches": ["*://www.amazon.com/*", "*://www.amazon.de/*", "*://www.amazon.fr/*", "*://www.amazon.it/*", "*://www.amazon.es/*", "*://www.amazon.co.uk/*"],
+    "js": ["./js/content.js"]
+   }
+ ]
 }
