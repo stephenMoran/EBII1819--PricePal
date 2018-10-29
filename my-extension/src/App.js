@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
-import * as PriceCal from 'PriceCal.js'
+import * as PriceCal from './utils/PriceCal.js'
 import BestPrice from './components/BestPrice'
 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
 
   componentDidMount() {
 
-    
+
   }
 
   render() {
