@@ -1,7 +1,7 @@
 import * as Amazon from './AmazonAPI.js'
 
 
-function PriceCal()
+export function price()
 {
   return 5;
-}
+};
