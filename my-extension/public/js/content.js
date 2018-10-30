@@ -12,14 +12,17 @@ chrome.runtime.onMessage.addListener(request => {
 
 function getUrl()
 {
-  chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
-        var url = tabs[0].url;
-        console.log(url);
-  });
-  return "hello";
+  chrome.tabs.query({
+    active: true,
+    currentWindow: true
+}, function(tabs) {
+    var tabURL = tabs[0].url;
+    console.log(tabURL);
+});
 }
 console.log("hello");
 var hello = this.getUrl();
+console.log(hello);
 
 /*
 var url = "https://www.amazon.co.uk/Kaspersky-Security-Devices-Android-Activation/dp/B07HMFC693/ref=sr_1_4?ie=UTF8&qid=1539540217&sr=8-4&keywords=B074SNVGV3%7CB074SP6DLW%7CB074SP8KYT%7CB074SP9XBX%7CB074SP8KYW%7CB074SPB1FL%7CB07HMFC693%7CB074SPC5TK%7CB074SNVGV1%7CB074SNZJHF";
