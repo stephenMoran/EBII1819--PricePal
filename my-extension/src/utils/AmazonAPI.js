@@ -1,3 +1,11 @@
+//Supported countries: UK, US, FR, IT, ES
+const amUK = "https://www.amazon.co.uk";
+const amUS = "https://www.amazon.com/";
+const amFR = "https://www.amazon.fr/";
+const amIT = "https://www.amazon.it/";
+const amES = "https://www.amazon.es/";
+
+
 export function getProductIDFromAmazonProductPageUrl(url) {
 	var re = /amazon.*\/([A-Z0-9]{10})(\/|\?|$)/
 	var match = re.exec(url)
@@ -8,6 +16,19 @@ export function getProductIDFromAmazonProductPageUrl(url) {
 		return null
 	}
 }
+
+export function validUrl(url)
+{
+	var am1 = url.includes(amUK);
+	var am2 =  url.startsWith(amUS);
+	var am3 = url.startsWith(amFR);
+	var am4 = url.startsWith(amIT);
+	var am5 = url.startsWith(amES);
+
+	return am1 || am2 || am3 || am4 || am5;
+}
+
+
 
 export function getCountryFromAmazonProductPageUrl(url) {
 	var re = /amazon(\.co)*\.(uk|fr|de|it|es)/
