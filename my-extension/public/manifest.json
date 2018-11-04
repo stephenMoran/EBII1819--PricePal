@@ -1,23 +1,23 @@
 {
-  "name": "PricePal",
-  "description": "Tool that compares prices on Amazon with other well trusted retailers",
-  "version": "0.0.0.1",
-  "manifest_version": 2,
-  "browser_action": {
+ "name": "PricePal",
+ "description": "Tool that compares prices on Amazon with other well trusted retailers",
+ "version": "0.0.0.1",
+ "manifest_version": 2,
+ "browser_action": {
     "default_popup": "index.html"
-  },
-  "icons": {
+ },
+ "icons": {
   "16": "./imgs/logo-small.png"
-},
-"content_scripts": [
-   {
+ },
+ "content_scripts": [
+  {
     "matches": ["*://www.amazon.com/*", "*://www.amazon.de/*", "*://www.amazon.fr/*", "*://www.amazon.it/*", "*://www.amazon.es/*", "*://www.amazon.co.uk/*"],
-    "js": ["./js/content.js"]
-   }
+    "js": ["app/content.js"]
+  }
  ],
- "permissions": ["activeTab", "tabs"],
+ "permissions": ["activeTab", "tabs", "background"],
  "background": {
-    "scripts": ["./js/background.js"],
-    "persistent": false
+   "scripts": ["app/background.js"],
+   "persistent": false
   }
 }

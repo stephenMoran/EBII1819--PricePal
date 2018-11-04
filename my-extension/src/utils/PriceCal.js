@@ -1,33 +1,37 @@
 /*global chrome*/
 import * as Amazon from './AmazonAPI.js'
 
-export function price()
+export function price(url)
 {
-    var prices = [];
-    var url = "www.amazon.co.uk";
-    console.log(Amazon.getCountryFromAmazonProductPageUrl(url));
-
-    if (Amazon.validUrl(url))
-    {
-      var country = Amazon.getCountryFromAmazonProductPageUrl(url);
-      console.log(country);
-    }
-    else {
+   console.log(url);
+   var prices = [];
+   if(url != "")
+   {
+      if (Amazon.validUrl(url))
       {
-        prices.push("Navigate to a valid Amazon webpage");
-        return prices
+        var country = Amazon.getCountryFromAmazonProductPageUrl(url);
+        console.log(country);
+      }
+      else {
+          prices.push("Navigate to a valid Amazon webpage");
+          return prices
       }
     }
-
+    else{
+      prices.push("Navigate to a valid Amazon webpage");
+      return prices;
+    }
 };
 
 
-function getUrl()
-{
-  var url;
-  chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
-    url = tabs[0].url;
-    console.log(url);
+/*
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    console.log(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+    if (request.greeting == "hello")
+      sendResponse({farewell: "goodbye"});
   });
-  return url;
-}
+
+*/
