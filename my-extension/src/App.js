@@ -22,10 +22,29 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>________________</h1>
-        <h1> The best price found was  </h1>
-        <BestPrice />
-        <h2> bye </h2>
+        <p> PricePal </p>
+        <p>___________________</p>
+        <table>
+  <tr>
+    <th>#</th>
+    <th>Region</th>
+    <th>Price</th>
+    <th>time</th>
+  </tr>
+  <tr>
+    <td>1.</td>
+    <td>Eng</td>
+    <td>€99.99</td>
+    <td>2 days</td>
+  </tr>
+  <tr>
+    <td>2.</td>
+    <td>Ger</td>
+    <td>€109.99</td>
+    <td>3 day</td>
+  </tr>
+</table>
+
 
       </div>
     );

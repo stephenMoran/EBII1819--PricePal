@@ -1,11 +1,19 @@
 .App {
   text-align: center;
   min-height: 370px;
-  min-width: 200px;
+  min-width: 180px;
   font-family: 'FontAwesome';
   font-weight: normal;
   font-style: normal;
+  font-size: calc(10px + 2vmin);
 
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+table, th, td {
+    border: 1px solid black;
+}
 }
 
 .App-logo {
