@@ -20,27 +20,13 @@ class App extends Component {
   }
 
   render() {
-    let rows = [];
-    for (var i = 0; i < this.state.size; i++){
-      let rowID = `row${i}`
-      let cell = []
-      for (var idx = 0; idx < this.state.size; idx++){
-        let cellID = 'cell${i}-${idx}'
-        cell.push(<td key={cellID} id={cellID}></td>)
-    }
-    rows.push(<tr key={i} id={rowID}>{cell}</tr>)
-  }
-  return (
-    <div className="container">
-        <div className="row">
-          <div className="col s12 board">
-            <table id="simple-board">
-               <tbody>
-                 {rows}
-               </tbody>
-             </table>
-          </div>
-        </div>
+    return (
+      <div className="App">
+        <h1>________________</h1>
+        <h1> The best price found was  </h1>
+        <BestPrice />
+        <h2> bye </h2>
+
       </div>
     );
   }
