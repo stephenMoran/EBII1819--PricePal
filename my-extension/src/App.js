@@ -20,35 +20,53 @@ class App extends Component {
   }
 
   render() {
-    return (
+     return (
       <div className="App">
-        <p> PricePal </p>
-        <p>___________________</p>
-        <table>
-  <tr>
-    <th>#</th>
-    <th>Region</th>
-    <th>Price</th>
-    <th>time</th>
-  </tr>
-  <tr>
-    <td>1.</td>
-    <td>Eng</td>
-    <td>€99.99</td>
-    <td>2 days</td>
-  </tr>
-  <tr>
-    <td>2.</td>
-    <td>Ger</td>
-    <td>€109.99</td>
-    <td>3 day</td>
-  </tr>
-</table>
-
-
+        <div class="stage">
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+         <div class="layer"></div>
+       </div>
+        <table class="center">
+        <tr>
+          <th>#</th>
+          <th>Region</th>
+          <th>Price</th>
+          <th>time</th>
+        </tr>
+        <tr>
+          <td>1.</td>
+          <td>Eng</td>
+          <td>€99.99</td>
+          <td>2 days</td>
+        </tr>
+        <tr>
+          <td>2.</td>
+          <td>Ger</td>
+          <td>€109.99</td>
+          <td>3 day</td>
+        </tr>
+       </table>
       </div>
     );
   }
-}
+ }
 
 export default App;
