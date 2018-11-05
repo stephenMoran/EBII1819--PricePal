@@ -65,7 +65,7 @@ export function getPriceFromAmazonProductDetailPage(doc) {
 	var priceAfterPoint = priceParts.pop()
 	var priceBeforePoint = priceParts.join('')
 	var res = priceAfterPoint
-	if (priceBeforePoint != "") {
+	if (priceBeforePoint !== "") {
 		res = priceBeforePoint + "." + priceAfterPoint
 	}
 	return parseFloat(res)

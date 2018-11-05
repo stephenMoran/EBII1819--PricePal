@@ -5,7 +5,7 @@ export function price(url)
 {
    console.log(url);
    var prices = [];
-   if(url != "")
+   if(url !== "")
    {
       if (Amazon.validUrl(url))
       {

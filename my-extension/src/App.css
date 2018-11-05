@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  width: 15%;
+  width: 100%;
 }
 
 .App-logo {
@@ -30,4 +30,62 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+body {
+	 background-color: #2F394D;
+   min-width: 300px;
+}
+h1 {
+	text-align:center;
+    color: #999999;
+}
+p {
+	text-align:center;
+    color: #999999;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0px;
+    overflow: hidden;
+}
+
+li {
+    float: center;
+    margin: 20px;
+}
+
+li a {
+    display: block;
+    color: #999999;
+    text-align: center;
+    padding: 5px;
+    text-decoration: none;
+    font: 20px arial, sans-serif;
+    background-color: #36213E;
+}
+
+li a2 {
+    display: block;
+    color: #999999;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    font: 12px arial, sans-serif;
+    background-color: #54457F;
+}
+
+li a3 {
+	display: block;
+    color: #999999;
+    text-align: center;
+    padding: 5px;
+    text-decoration: none;
+    font: 20px arial, sans-serif;
+    background-color: #54457F;
+}
+
+li a:hover{
+    background-color: #554971;
 }

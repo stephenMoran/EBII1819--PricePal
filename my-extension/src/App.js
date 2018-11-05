@@ -29,11 +29,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    var x = this.changePrice;
-    chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs) {
-        console.log(typeof tabs);
-        x(tabs);
-    });
+
   }
 
   render() {
