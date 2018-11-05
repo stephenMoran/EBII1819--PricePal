@@ -1,8 +1,13 @@
+/*global chrome*/
 import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import * as PriceCal from './utils/PriceCal.js'
 import BestPrice from './components/BestPrice'
+import PriceList from './components/PriceList'
+
+
+
 
 class App extends Component {
 
@@ -11,9 +16,21 @@ class App extends Component {
           this.state = {
               prices: [],
               bestPrice: null,
+<<<<<<< HEAD
               size : 3
+=======
+              price: null
+>>>>>>> danielsTestBranch
           }
+        this.changePrice = this.changePrice.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
       }
+
+  changePrice (tabs) {
+        var url = tabs[0].url;
+        console.log(typeof url);
+        var price = PriceCal.price(url);
+  }
 
   componentDidMount() {
 
@@ -22,6 +39,7 @@ class App extends Component {
   render() {
      return (
       <div className="App">
+<<<<<<< HEAD
         <div class="stage">
          <div class="layer"></div>
          <div class="layer"></div>
@@ -64,6 +82,12 @@ class App extends Component {
           <td>3 day</td>
         </tr>
        </table>
+=======
+        <h1>{this.state.price}</h1>
+        <h1> Hello </h1>
+        <BestPrice />
+        <PriceList/>
+>>>>>>> danielsTestBranch
       </div>
     );
   }
