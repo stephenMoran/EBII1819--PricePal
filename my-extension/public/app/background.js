@@ -3,19 +3,13 @@
 //var id = this.getProductIDFromAmazonProductPageUrl(url);
 console.log("hello");
 //get current URL when new tab is opened
-chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
-  url = tabs[0].url;
-  console.log(url);
-//  PriceCal.updateUrl(url);
-});
+
 
 chrome.tabs.onActivated.addListener(function(activeInfo) {
     console.log(activeInfo.tabId);
 });
 
-chrome.tabs.onCreated.addListener(function ( tab ){
-  alert(tab.url);
-});
+
 
 var port = chrome.runtime.connect({name: "knockknock"});
 port.postMessage({joke: "Knock knock"});

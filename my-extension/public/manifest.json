@@ -12,7 +12,8 @@
  "content_scripts": [
   {
     "matches": ["*://www.amazon.com/*", "*://www.amazon.de/*", "*://www.amazon.fr/*", "*://www.amazon.it/*", "*://www.amazon.es/*", "*://www.amazon.co.uk/*"],
-    "js": ["app/content.js"]
+    "js": ["app/content.js"],
+    "run_at": "document_start"
   }
  ],
  "permissions": ["activeTab", "tabs", "background"],
