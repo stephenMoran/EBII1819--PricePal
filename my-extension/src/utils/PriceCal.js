@@ -22,7 +22,7 @@ export function price()
 };
 
 
-function getUrl()
+export function getUrl()
 {
   var url;
   chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
@@ -30,4 +30,11 @@ function getUrl()
     console.log(url);
   });
   return url;
+}
+
+function getShipping()
+{
+  var country = Amazon.getCountryFromProductPageUrl(url);
+  
+  
 }
