@@ -16,13 +16,20 @@ export function price(url)
    var prices = [];
    if(url != "")
    {
-
       if (Amazon.validUrl(url))
       {
-        var currentPrice = Amazon.getPrice(url);
 				var currentCountry = Amazon.getCountryFromAmazonProductPageUrl(url);
+				var currentPrice = Amazon.getPrice(url);
+				console.log(currentPrice);
+				if(currentCountry = "uk")
+				{
+					gbpToEur(currentPrice);
+					//currentPrice = fx.convert(currentPrice, {from: "GBP", to: "EUR"});
+					//console.log("GBP price: " + currentPrice);
+				}
+
         var currentid =  Amazon.getProductIDFromAmazonProductPageUrl(url);
-        console.log(currentPrice);
+
         if(currentPrice != null)
         {
           var countries = ["uk","fr","de","it", "es"];
@@ -31,18 +38,31 @@ export function price(url)
 					{
 						if(countries[i] != currentCountry)
 						{
-							var item = {url:null, country:null, price:null, shipping: null};
-							  generateAmazonProductPageUrlForCountry(currentid, countries[i]).then(
+							var item = {available: true, url:null, country:null, price:null, shipping: null};
+
+							  var countryUrl = Amazon.generateAmazonProductPageUrlForCountry(currentid, countries[i]);
+								console.log(countryUrl);
+								var countryPrice = Amazon.getPrice(countryUrl);
+								if(countryPrice == null)
+								{
+									item.available = false;
+									break;
+								}
+								console.log(countryPrice);
+								/*
+								.then(
 								function(currentUrl)
 								{
+									item.url = currentUrl;
 									var itemPrice = Amazon.getPrice(currentUrl);
+									console.log(itemPrice);
 									item.price = itemPrice;
-									return currentUrl;
 								}
 							);
+							*/
+							prices.push(item);
 						}
           }
-
         }
         else
         {
@@ -60,6 +80,24 @@ export function price(url)
       return prices;
     }
 };
+
+
+function gbpToEur(price)
+{
+	return fetch('https://api.exchangeratesapi.io/latest?symbols=GBP')
+  .then(function(response) {
+    return response.json();
+  }).then(
+		function(gbpJson)
+		{
+			console.log(JSON.stringify(gbpJson));
+			console.log(gbpJson.rates);
+			return gbpJson.rates;
+		}
+	);
+}
+
+
 
 
 /*

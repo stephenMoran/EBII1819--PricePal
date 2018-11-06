@@ -49,7 +49,7 @@ export function generateAmazonProductPageUrlForCountry(productID, country) {
 	return searchUrlPrefix + countryDomain + searchUrlSuffix + productID + '/'
 }
 
-
+//Need to add ability to work with deal packages
 export function getPrice(url)
 {
   let price = fetch(
