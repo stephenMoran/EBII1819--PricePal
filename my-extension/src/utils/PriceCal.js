@@ -1,6 +1,7 @@
 /*global chrome*/
 import * as Amazon from "./AmazonAPI.js"
 var prices = [];
+var currentGbpRate = null;
 
 export function price(url)
 {
@@ -14,9 +15,17 @@ export function price(url)
           function(currentPrice){
             if(currentCountry = "uk")
             {
-              console.log(gbpToEur(currentPrice));
-              //currentPrice = fx.convert(currentPrice, {from: "GBP", to: "EUR"});
-              //console.log("GBP price: " + currentPrice);
+              gbpToEur().then(
+                function(rate)
+                {
+                  return updateGbpRates(rate);
+                }).then(
+                  function(updatedRate)
+                  {
+                    currentPrice = currentPrice/updatedRate;
+                    console.log(currentPrice);
+                  }
+                );
             }
             var currentid =  Amazon.getProductIDFromAmazonProductPageUrl(url);
             if(currentPrice != null)
@@ -33,7 +42,7 @@ export function price(url)
                     item.url = countryUrl;
                     console.log(countryUrl);
                     Amazon.getPrice(countryUrl).then(
-                      function(countyPrice)
+                      function(countryPrice)
                       {
                         if(countryPrice == null)
                         {
@@ -71,10 +80,19 @@ export function price(url)
       }
 };
 
-function gbpToEur(price)
+
+function updateGbpRates(rate)
 {
-  console.log(typeof price);
-	return price/ fetch('https://api.exchangeratesapi.io/latest?symbols=GBP')
+  currentGbpRate = rate;
+  return currentGbpRate;
+}
+
+
+
+function gbpToEur()
+{
+  console.log();
+	return fetch('https://api.exchangeratesapi.io/latest?symbols=GBP')
   .then(function(response) {
     return response.json();
   }).then(
