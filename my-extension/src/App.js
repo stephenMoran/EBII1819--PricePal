@@ -7,9 +7,6 @@ import BestPrice from './components/BestPrice'
 import PriceList from './components/PriceList'
 import * as Amazon from "./utils/AmazonAPI.js"
 
-
-
-
 class App extends Component {
 
   constructor() {
