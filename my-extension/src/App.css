@@ -1,7 +1,14 @@
 
+
+
+
 .App {
   text-align: center;
   background-color: #FF846E;
+  --Text-Color: #000000;
+  --Head-Color: #FF9900;
+  --Body-Color: #146EB4;
+  --Back-Color: #FFFFFF;
 }
 
 .App-logo {
@@ -94,7 +101,7 @@ table {
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: var(--Back-Color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -118,18 +125,22 @@ table {
 }
 
 body {
-	 background-color: #2F394D;
+	 background-color: var(--Back-Color);
    min-width: 300px;
 }
 h1 {
   font: 30px arial, sans-serif;
 	text-align:center;
+<<<<<<< HEAD
     color: #F08804;
+=======
+    color: #000000;
+>>>>>>> 83b55331065cfcb3bd848d85bda8dfe9bf24b6f3
 }
 p {
   font: 20px arial, sans-serif;
 	text-align:center;
-    color: #999999;
+    color: var(--Text-Color);
 }
 ul {
     list-style-type: none;
@@ -145,13 +156,17 @@ li {
 
 li a {
     display: block;
+<<<<<<< HEAD
     color: #F08804;
+=======
+    color: var(--Text-Color);
+>>>>>>> 83b55331065cfcb3bd848d85bda8dfe9bf24b6f3
     text-align: center;
     vertical-align: middle;
     padding: 5px;
     text-decoration: none;
     font: 20px arial, sans-serif;
-    background-color: #36213E;
+    background-color: var(--Head-Color);
 }
 li a img {
     border: 1px solid #000000;
@@ -162,22 +177,22 @@ li a img {
 
 li a2 {
     display: block;
-    color: #999999;
+    color: var(--Text-Color);
     text-align: center;
     padding: 10px;
     text-decoration: none;
     font: 12px arial, sans-serif;
-    background-color: #54457F;
+    background-color: var(--Body-Color);
 }
 
 li a3 {
 	display: block;
-    color: #999999;
+    color: var(--Text-Color);
     text-align: center;
     padding: 5px;
     text-decoration: none;
     font: 20px arial, sans-serif;
-    background-color: #54457F;
+    background-color: var(--Body-Color);
 }
 
 li a:hover{
