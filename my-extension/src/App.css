@@ -131,7 +131,11 @@ body {
 h1 {
   font: 30px arial, sans-serif;
 	text-align:center;
+<<<<<<< HEAD
     color: #F08804;
+=======
+    color: #000000;
+>>>>>>> 83b55331065cfcb3bd848d85bda8dfe9bf24b6f3
 }
 p {
   font: 20px arial, sans-serif;
@@ -152,7 +156,11 @@ li {
 
 li a {
     display: block;
+<<<<<<< HEAD
     color: #F08804;
+=======
+    color: var(--Text-Color);
+>>>>>>> 83b55331065cfcb3bd848d85bda8dfe9bf24b6f3
     text-align: center;
     vertical-align: middle;
     padding: 5px;
