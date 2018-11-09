@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import DynamicSen from './DynamicSen'
 
 
 class PriceList extends React.Component {
@@ -10,8 +11,10 @@ class PriceList extends React.Component {
               <link rel="stylesheet" href="App.css"/>
             </head>
             <body>
-              <h1>PricePal</h1>
-              <p>Purchasing from the UK saves you €1!</p>
+            <h1>
+              <img src=".\imgs\LogoOfficial.gif" alt="PricePal"/>
+            </h1>
+              <DynamicSen/>
               <ul>
                 <li>
                   <a href="https://www.amazon.co.uk" target="_blank">
@@ -44,6 +47,14 @@ class PriceList extends React.Component {
                   </a>
                   <a2>€55 list price</a2>
                   <a3>€67</a3>
+                </li>
+                <li>
+                  <a href="https://www.amazon.it" target="_blank">
+                    <img src=".\imgs\IT.png" alt="IT"/>
+                    &nbsp;IT
+                  </a>
+                  <a2>€5500 list price</a2>
+                  <a3>€6700</a3>
                 </li>
               </ul>
             </body>
