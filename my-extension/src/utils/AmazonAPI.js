@@ -6,7 +6,8 @@ const amIT = "https://www.amazon.it/";
 const amES = "https://www.amazon.es/";
 
 
-export function getProductIDFromAmazonProductPageUrl(url) {
+export function getProductIDFromAmazonProductPageUrl(url)
+{
 	var re = /amazon.*\/([A-Z0-9]{10})(\/|\?|$)/
 	var match = re.exec(url)
 	if(url.match(re)){
@@ -46,7 +47,13 @@ export function generateAmazonProductPageUrlForCountry(productID, country) {
 		countryDomain = 'co.uk'
 	}
 	var searchUrlSuffix = '/dp/'
-	return searchUrlPrefix + countryDomain + searchUrlSuffix + productID + '/'
+	return searchUrlPrefix + countryDomain + searchUrlSuffix + productID + '/';
+}
+
+
+export function addAffiliateLinkToUrl(url)
+{
+	return url + "?tag={pricepal00-20}";
 }
 
 //Need to add ability to work with deal packages
@@ -78,7 +85,6 @@ export function getPriceFromDoc(response)
 			//console.log(getPriceFromAmazonProductDetailPage(doc));
 		}).then(function(doc){
 			 return getPriceFromAmazonProductDetailPage(doc);
-
 		});
 	}
 	else

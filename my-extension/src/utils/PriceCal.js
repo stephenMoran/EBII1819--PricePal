@@ -10,75 +10,150 @@ export function price(url)
    {
       if (Amazon.validUrl(url))
       {
-				var currentCountry = Amazon.getCountryFromAmazonProductPageUrl(url);
 				Amazon.getPrice(url).then(
-          function(currentPrice){
-            if(currentCountry = "uk")
-            {
-              gbpToEur().then(
-                function(rate)
-                {
-                  return updateGbpRates(rate);
-                }).then(
-                  function(updatedRate)
-                  {
-                    currentPrice = currentPrice/updatedRate;
-                    console.log(currentPrice);
-                  }
-                );
-            }
-            var currentid =  Amazon.getProductIDFromAmazonProductPageUrl(url);
-            if(currentPrice != null)
-            {
-              var countries = ["uk","fr","de","it", "es"];
-              var bestPrice = currentPrice;
-              for (var i in countries)
-              {
-                if(countries[i] != currentCountry)
-                {
-                    var item = {available: true, url:null, country:null, price:null, shipping: null};
-                    var countryUrl = Amazon.generateAmazonProductPageUrlForCountry(currentid, countries[i]);
-                    item.country = countries[i];
-                    item.url = countryUrl;
-                    console.log(countryUrl);
-                    Amazon.getPrice(countryUrl).then(
-                      function(countryPrice)
-                      {
-                        if(countryPrice == null)
-                        {
-                          item.available = false;
-                        }
-                        else
-                        {
-                          item.price = countryPrice;
-                        }
-                      }
-                    ).then(
-                      function()
-                      {
-                        prices.push(item);
-                      }
-                    );
-                }
-              }
-            }
+          function(price)
+          {
+            var currentItem = {id: null, available: true, url:null, country:null, price:null, shipping: null};
+            currentItem.price = price;
+            currentItem.url = url;
+            return currentItem;
           }
-        ).then(function(){
-           return prices;
-        });
-        }
-        else
-        {
-          prices.push("Navigate to a valid Amazon webpage");
-          return prices
-        }
+        ).then(
+          function(item)
+          {
+            item.country = Amazon.getCountryFromAmazonProductPageUrl(item.url);
+            return item;
+          }
+        ).then(
+          function(item)
+          {
+            if(item.country == "uk")
+            {
+              convertToGbp(item.price).then(
+                function(newPrice)
+                {
+                  item.price = newPrice;
+                }
+              )
+            }
+            return item;
+          }
+        ).then(
+          function(item)
+          {
+            item.id = Amazon.getProductIDFromAmazonProductPageUrl(item.url);
+            console.log(item.id);
+            return item;
+          }
+        ).then(
+          function(item)
+          {
+            console.log(item);
+            prices.push(item);
+            return item;
+          }
+        ).then(
+          function(item)
+          {
+            return buildPrices(item);
+          }
+        )
       }
       else
       {
         prices.push("Navigate to a valid Amazon webpage");
-        return prices;
+        return prices
       }
+    }
+    else
+    {
+        prices.push("Navigate to a valid Amazon webpage");
+        return prices;
+    }
 };
+
+
+function convertToGbp(price)
+{
+  var currentPrice = price;
+  return gbpToEur().then(
+    function(rate)
+    {
+      return updateGbpRates(rate);
+    }).then(
+      function(updatedRate)
+      {
+        currentPrice = currentPrice/updatedRate;
+        console.log(currentPrice);
+        return price;
+      }
+    );
+}
+
+
+function buildPrices(item)
+{
+      console.log("sucess");
+    var currentId =  item.id;
+    var currentPrice = item.price;
+    var currentCountry = item.country;
+    if(currentPrice != null)
+    {
+      var countries = ["uk","fr","de","it", "es"];
+      var bestPrice = currentPrice;
+      for (var i in countries)
+      {
+        if(countries[i] != currentCountry)
+        {
+            var url = Amazon.generateAmazonProductPageUrlForCountry(currentId, countries[i])
+
+            var promise1 = Promise.resolve(url);
+            promise1.then(
+              function(url)
+              {
+                var currentItem = {id: null, available: true, url:null, country:null, price:null, shipping:null};
+                currentItem.url = url;
+                Amazon.getPrice(url).then(
+                  function(price)
+                  {
+                    currentItem.price = price;
+                    return currentItem;
+                  }
+                ).then(
+                  function(item)
+                  {
+                    item.country = Amazon.getCountryFromAmazonProductPageUrl(item.url);
+                    return item;
+                  }
+                ).then(
+                  function(item)
+                  {
+                    if(item.country == "uk")
+                    {
+                      convertToGbp(item.price).then(
+                        function(newPrice)
+                        {
+                          item.price = newPrice;
+                        }
+                      )
+                    }
+                    return item;
+                  }
+                ).then(
+                  function(item)
+                  {
+                    console.log(item);
+                    prices.push(item);
+                  }
+                );
+              }
+            );
+          }
+        }
+      }
+      return prices;
+}
+
 
 
 function updateGbpRates(rate)
@@ -89,6 +164,21 @@ function updateGbpRates(rate)
 
 
 
+/*
+if(price != null)
+{
+  item.price = price;
+  url = Amazon.addAffiliateLinkToUrl(item.url);
+  item.url = url;
+  console.log(item.url);
+  return item;
+}
+else
+{
+  return null;
+}
+*/
+
 function gbpToEur()
 {
   console.log();
@@ -98,16 +188,11 @@ function gbpToEur()
   }).then(
 		function(gbpJson)
 		{
-			console.log(JSON.stringify(gbpJson));
-			console.log(gbpJson.rates);
 			return gbpJson.rates;
 		}
 	).then(
     function(rates){
-      console.log(typeof rates.GBP);
       return rates.GBP;
     }
   );
-
-
 }
