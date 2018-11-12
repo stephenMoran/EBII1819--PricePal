@@ -93,7 +93,6 @@ function convertToGbp(price)
 
 function buildPrices(item)
 {
-      console.log("sucess");
     var currentId =  item.id;
     var currentPrice = item.price;
     var currentCountry = item.country;
@@ -112,7 +111,7 @@ function buildPrices(item)
               function(url)
               {
                 var currentItem = {id: null, available: true, url:null, country:null, price:null, shipping:null};
-                currentItem.url = url;
+                currentItem.url = Amazon.addAffiliateLinkToUrl(url);
                 Amazon.getPrice(url).then(
                   function(price)
                   {
@@ -168,7 +167,7 @@ function updateGbpRates(rate)
 if(price != null)
 {
   item.price = price;
-  url = Amazon.addAffiliateLinkToUrl(item.url);
+
   item.url = url;
   console.log(item.url);
   return item;
