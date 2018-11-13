@@ -23,12 +23,8 @@ class App extends Component {
   changePrice (tabs) {
         var url = tabs[0].url;
         console.log(typeof url);
-        PriceCal.price(url).then(
-          function (price)
-          {
-            this.setState({ prices: price })
-          }
-        );
+        var prices = PriceCal.price(url);
+        console.log(prices);
   }
 
   componentDidMount() {

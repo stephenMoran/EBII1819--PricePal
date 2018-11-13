@@ -51,9 +51,29 @@ export function generateAmazonProductPageUrlForCountry(productID, country) {
 }
 
 
-export function addAffiliateLinkToUrl(url)
+export function addAffiliateLinkToUrl(url, country)
 {
-	return url + "?tag={pricepal00-20}";
+	var affliateUrl;
+	switch(country)
+	{
+		case "uk":
+			affliateUrl = url + "?tag=pricepal-21";
+			break;
+		case "de":
+			affliateUrl = url + "?tag=pricepal04-21";
+			break;
+		case "fr":
+			affliateUrl = url + "?tag=pricepal08-21";
+			break;
+		case "it":
+			affliateUrl = url + "?tag=pricepal0e-21";
+			break;
+		case "es":
+			affliateUrl  = url + "?tag=pricepal09-21";
+			break;
+	}
+	console.log(affliateUrl);
+	return affliateUrl;
 }
 
 //Need to add ability to work with deal packages

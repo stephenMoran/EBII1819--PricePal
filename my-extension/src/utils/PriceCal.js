@@ -70,6 +70,7 @@ export function price(url)
         prices.push("Navigate to a valid Amazon webpage");
         return prices;
     }
+    return prices;
 };
 
 
@@ -111,7 +112,7 @@ function buildPrices(item)
               function(url)
               {
                 var currentItem = {id: null, available: true, url:null, country:null, price:null, shipping:null};
-                currentItem.url = Amazon.addAffiliateLinkToUrl(url);
+                currentItem.url = url;
                 Amazon.getPrice(url).then(
                   function(price)
                   {
@@ -136,6 +137,12 @@ function buildPrices(item)
                         }
                       )
                     }
+                    return item;
+                  }
+                ).then(
+                  function(item)
+                  {
+                    item.url = Amazon.addAffiliateLinkToUrl(item.url, item.country);
                     return item;
                   }
                 ).then(
