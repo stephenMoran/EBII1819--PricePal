@@ -71,7 +71,8 @@ export function price(url)
       }
 };
 
-function gbpToEur(price)
+
+export function getUrl()
 {
   console.log(typeof price);
 	return price/ fetch('https://api.exchangeratesapi.io/latest?symbols=GBP')
@@ -90,6 +91,13 @@ function gbpToEur(price)
       return rates.GBP;
     }
   );
+
+
+}
+
+function getShipping()
+{
+  var country = Amazon.getCountryFromProductPageUrl(url);
 
 
 }

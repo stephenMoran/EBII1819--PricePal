@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import DynamicSen from './DynamicSen'
-
+import * as Amazon from './../utils/AmazonAPI.js'
+import * as PriceCal from './../utils/PriceCal.js'
 
 class PriceList extends React.Component {
   render() {
+
         return (
             <div className="price-list">
             <head>
