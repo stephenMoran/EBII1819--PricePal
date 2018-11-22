@@ -4,6 +4,21 @@
 //http://www.amazon.com/dp/{ASIN}/?tag={trackingId}
 
 //Listener for messages from background script
+import * as amzUtil from "../../src/utils/AmazonAPI.js"
+
+chrome.runtime.onMessage.addListener(
+	function(request, sender, sendResponse) {
+		if( request.message === "get_current_page_info" ) {
+			sendResponse([
+				amzUtil.getPriceFromAmazonProductDetailPage(document),
+				amzUtil.getRank(document)
+			])
+		}
+	}
+)
+
+/*
+
 chrome.runtime.onMessage.addListener(request => {
   if (request.type === 'getHeadlines') {
       // DO SOMETHING
