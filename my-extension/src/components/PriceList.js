@@ -12,7 +12,7 @@ class PriceList extends React.Component {
             </head>
             <body>
             <h1>
-              <img src=".\imgs\LogoOfficial.gif" alt="PricePal"/>
+              <img width = "150px" src=".\imgs\Logo.png" alt="PricePal"/>
             </h1>
               <DynamicSen/>
               <ul>

@@ -5,10 +5,13 @@
 .App {
   text-align: center;
   background-color: #FF846E;
-  --Text-Color: #000000;
-  --Head-Color: #FF9900;
-  --Body-Color: #146EB4;
+  --Text-Color: #2c2c2c;
+  --Body-Color: #F98523;
+  --Head-Color: #506c7c;
   --Back-Color: #FFFFFF;
+  --Country-Color: #2c2c2c;
+  --Hover-Color: #6a8797;
+
 }
 
 .App-logo {
@@ -78,14 +81,6 @@ $NUM_LAYERS: 20;
 @keyframes ಠ_ಠ {
   100% { transform: rotateY(-15deg) rotateX(-15deg); }
 }
-
-
-
-
-th, td {
-    padding: 5px;
-    text-align: center;
-}
 table, th, td {
     background-color: #FF6C64;
     border: 2px solid black;
@@ -99,7 +94,6 @@ table, th, td {
 table {
   border-style: none;
 }
-
 .App-header {
   background-color: var(--Back-Color);
   min-height: 100vh;
@@ -131,10 +125,6 @@ body {
 h1 {
   font: 30px arial, sans-serif;
 	text-align:center;
-<<<<<<< HEAD
-    color: #F08804;
-=======
-    color: #000000;
 }
 p {
   font: 20px arial, sans-serif;
@@ -155,11 +145,7 @@ li {
 
 li a {
     display: block;
-<<<<<<< HEAD
-    color: #F08804;
-=======
-    color: var(--Text-Color);
->>>>>>> 83b55331065cfcb3bd848d85bda8dfe9bf24b6f3
+    color: var(--Country-Color);
     text-align: center;
     vertical-align: middle;
     padding: 5px;
@@ -195,5 +181,5 @@ li a3 {
 }
 
 li a:hover{
-    background-color: #554971;
+    background-color: var(--Hover-Color);
 }
