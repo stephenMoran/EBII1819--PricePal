@@ -5,35 +5,34 @@ var currentGbpRate = null;
 
 export function price(url)
 {
-  prices = [{id: null, available: true, url:null, country:null, price:null, shipping: null}];
+  prices = [];
    if(url != "")
    {
       if (Amazon.validUrl(url))
       {
-        prices = [];
-				Amazon.getPrice(url).then(
+				return Amazon.getPrice(url).then(
           function(price)
           {
-            var currentItem = {id: null, available: true, url:null, country:null, price:null, shipping: null};
-            currentItem.price = price;
-            currentItem.url = url;
+            var currentItem = [];
+            currentItem.push(price);
+            currentItem.push(url);
             return currentItem;
           }
         ).then(
           function(item)
           {
-            item.country = Amazon.getCountryFromAmazonProductPageUrl(item.url);
+            item.push(Amazon.getCountryFromAmazonProductPageUrl(item[1]));
             return item;
           }
         ).then(
           function(item)
           {
-            if(item.country == "uk")
+            if(item[2] == "uk")
             {
-              convertToGbp(item.price).then(
+              convertToGbp(item[0]).then(
                 function(newPrice)
                 {
-                  item.price = newPrice;
+                  item[0] = newPrice;
                 }
               )
             }
@@ -42,15 +41,18 @@ export function price(url)
         ).then(
           function(item)
           {
-            item.id = Amazon.getProductIDFromAmazonProductPageUrl(item.url);
-            console.log(item.id);
+            var id = Amazon.getProductIDFromAmazonProductPageUrl(item[1]);
+            item.push(id);
             return item;
           }
         ).then(
           function(item)
           {
-            console.log(item);
-            prices.push(item);
+            console.log(item[0]);
+            if(item[0] != null)
+            {
+              prices.push(item);
+            }
             return item;
           }
         ).then(
@@ -71,6 +73,7 @@ export function price(url)
         prices.push("Navigate to a valid Amazon webpage");
         return prices;
     }
+    console.log(prices);
     return prices;
 };
 
@@ -95,9 +98,9 @@ function convertToGbp(price)
 
 function buildPrices(item)
 {
-    var currentId =  item.id;
-    var currentPrice = item.price;
-    var currentCountry = item.country;
+    var currentPrice = item[0];
+    var currentCountry = item[2];
+    var currentId = item[3];
     if(currentPrice != null)
     {
       var countries = ["uk","fr","de","it", "es"];
@@ -106,35 +109,35 @@ function buildPrices(item)
       {
         if(countries[i] != currentCountry)
         {
-            var url = Amazon.generateAmazonProductPageUrlForCountry(currentId, countries[i])
+            var url = Amazon.generateAmazonProductPageUrlForCountry(item[3], countries[i])
 
             var promise1 = Promise.resolve(url);
             promise1.then(
               function(url)
               {
-                var currentItem = {id: null, available: true, url:null, country:null, price:null, shipping:null};
-                currentItem.url = url;
+                var currentItem = [];
+                currentItem[1] = url;
                 Amazon.getPrice(url).then(
                   function(price)
                   {
-                    currentItem.price = price;
+                    currentItem[0] = price;
                     return currentItem;
                   }
                 ).then(
                   function(item)
                   {
-                    item.country = Amazon.getCountryFromAmazonProductPageUrl(item.url);
+                    item[2] = Amazon.getCountryFromAmazonProductPageUrl(item[1]);
                     return item;
                   }
                 ).then(
                   function(item)
                   {
-                    if(item.country == "uk")
+                    if(item[2] == "uk")
                     {
-                      convertToGbp(item.price).then(
+                      convertToGbp(item[0]).then(
                         function(newPrice)
                         {
-                          item.price = newPrice;
+                          item[0] = newPrice;
                         }
                       )
                     }
@@ -143,14 +146,26 @@ function buildPrices(item)
                 ).then(
                   function(item)
                   {
-                    item.url = Amazon.addAffiliateLinkToUrl(item.url, item.country);
+                    item[1] = Amazon.addAffiliateLinkToUrl(item[1], item[2]);
                     return item;
                   }
-                ).then(
+                ).then
+                (
                   function(item)
                   {
-                    console.log(item);
-                    prices.push(item);
+                    var id = Amazon.getProductIDFromAmazonProductPageUrl(item[1]);
+                    item.push(id);
+                    return item;
+                  }
+                )
+                .then(
+                  function(item)
+                  {
+                    console.log(item[0]);
+                    if(item[0] != null)
+                    {
+                      prices.push(item);
+                    }
                   }
                 );
               }

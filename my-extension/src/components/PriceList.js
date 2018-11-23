@@ -8,23 +8,42 @@ class PriceList extends React.Component {
     super(props);
     this.state = {};
     this.createTable = this.createTable.bind(this);
+    this.initialiseProps = this.initialiseProps.bind(this);
   }
 
-  createTable(){
-      let prices = this.props.prices;
-      console.log(prices[0].url);
-      return(
-          <p>{prices[0].url}</p>
+  createTable()
+  {
+    if(this.props.prices != null)
+    {
+      var i;
+      for(i = 0; i < this.props.prices.length; i++)
+      {
+        console.log(this.props.prices[i]);
+      }
+      this.initialiseProps().then(
+        function(prices)
+        {
+          console.log(prices.length);
+          console.log(prices[0][4]);
+        }
       )
     }
+  }
 
+  initialiseProps()
+  {
+    var prices = this.props.prices;
+    var promise1 = Promise.resolve(prices);
+    return promise1;
+  }
 
   render() {
-          let prices = this.props.prices;
-          console.log("rendered")
+          console.log("Rederin");
           return (
               <div className="price-list">
-                  {prices[0].url}
+                  <table>
+                    {this.createTable()}
+                  </table>
               </div>
           )
     }

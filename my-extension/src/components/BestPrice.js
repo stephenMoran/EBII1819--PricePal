@@ -5,7 +5,6 @@ class BestPrice extends React.Component {
   render() {
         return (
             <div className="best-price">
-                <h1>€71.99</h1>
             </div>
         )
     }

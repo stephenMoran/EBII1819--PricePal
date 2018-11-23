@@ -12,7 +12,7 @@ class App extends Component {
   constructor() {
           super()
           this.state = {
-              prices: [{id: null, available: true, url:null, country:null, price:null, shipping: null}],
+              prices: null,
               bestPrice: null,
               price: null
           }
@@ -22,8 +22,14 @@ class App extends Component {
 
   changePrice (tabs) {
         var url = tabs[0].url;
-        var amazonPrices = PriceCal.price(url);
-        this.setState({prices: amazonPrices});
+        var x = this;
+        var amazonPrices = PriceCal.price(url).then(
+          function(prices)
+          {
+            x.setState({prices: prices});
+          }
+        );
+        //this.setState({prices: amazonPrices});
   }
 
   componentDidMount() {
