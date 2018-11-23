@@ -1,4 +1,13 @@
-export function getProductIDFromAmazonProductPageUrl(url) {
+//Supported countries: UK, US, FR, IT, ES
+const amUK = "https://www.amazon.co.uk";
+const amUS = "https://www.amazon.com/";
+const amFR = "https://www.amazon.fr/";
+const amIT = "https://www.amazon.it/";
+const amES = "https://www.amazon.es/";
+
+
+export function getProductIDFromAmazonProductPageUrl(url)
+{
 	var re = /amazon.*\/([A-Z0-9]{10})(\/|\?|$)/
 	var match = re.exec(url)
 	if(url.match(re)){
@@ -38,7 +47,33 @@ export function generateAmazonProductPageUrlForCountry(productID, country) {
 		countryDomain = 'co.uk'
 	}
 	var searchUrlSuffix = '/dp/'
-	return searchUrlPrefix + countryDomain + searchUrlSuffix + productID + '/'
+	return searchUrlPrefix + countryDomain + searchUrlSuffix + productID + '/';
+}
+
+
+export function addAffiliateLinkToUrl(url, country)
+{
+	var affliateUrl;
+	switch(country)
+	{
+		case "uk":
+			affliateUrl = url + "?tag=pricepal-21";
+			break;
+		case "de":
+			affliateUrl = url + "?tag=pricepal04-21";
+			break;
+		case "fr":
+			affliateUrl = url + "?tag=pricepal08-21";
+			break;
+		case "it":
+			affliateUrl = url + "?tag=pricepal0e-21";
+			break;
+		case "es":
+			affliateUrl  = url + "?tag=pricepal09-21";
+			break;
+	}
+	console.log(affliateUrl);
+	return affliateUrl;
 }
 
 //Need to add ability to work with deal packages
@@ -70,7 +105,6 @@ export function getPriceFromDoc(response)
 			//console.log(getPriceFromAmazonProductDetailPage(doc));
 		}).then(function(doc){
 			 return getPriceFromAmazonProductDetailPage(doc);
-
 		});
 	}
 	else
