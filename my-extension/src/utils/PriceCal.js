@@ -5,11 +5,12 @@ var currentGbpRate = null;
 
 export function price(url)
 {
-  prices = [];
+  prices = [{id: null, available: true, url:null, country:null, price:null, shipping: null}];
    if(url != "")
    {
       if (Amazon.validUrl(url))
       {
+        prices = [];
 				Amazon.getPrice(url).then(
           function(price)
           {

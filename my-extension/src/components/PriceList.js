@@ -3,21 +3,30 @@ import ReactDOM from 'react-dom'
 
 
 class PriceList extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.createTable = this.createTable.bind(this);
+  }
+
+  createTable(){
+      let prices = this.props.prices;
+      console.log(prices[0].url);
+      return(
+          <p>{prices[0].url}</p>
+      )
+    }
+
+
   render() {
-        return (
-            <div className="price-list">
-              <table>
-              <tr>
-                <th>Country</th>
-                <th>Price</th>
-              </tr>
-              <tr>
-                <td>UK</td>
-                <td>70</td>
-              </tr>
-              </table>
-            </div>
-        )
+          let prices = this.props.prices;
+          console.log("rendered")
+          return (
+              <div className="price-list">
+                  {prices[0].url}
+              </div>
+          )
     }
 }
 export default PriceList

@@ -12,7 +12,7 @@ class App extends Component {
   constructor() {
           super()
           this.state = {
-              prices: [],
+              prices: [{id: null, available: true, url:null, country:null, price:null, shipping: null}],
               bestPrice: null,
               price: null
           }
@@ -22,15 +22,13 @@ class App extends Component {
 
   changePrice (tabs) {
         var url = tabs[0].url;
-        console.log(typeof url);
-        var prices = PriceCal.price(url);
-        console.log(prices);
+        var amazonPrices = PriceCal.price(url);
+        this.setState({prices: amazonPrices});
   }
 
   componentDidMount() {
     var x = this.changePrice;
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs) {
-        console.log(typeof tabs);
         x(tabs);
     });
   }
@@ -39,9 +37,8 @@ class App extends Component {
     return (
       <div className="App">
         <h1></h1>
-        <h1> Hello </h1>
         <BestPrice />
-        <PriceList/>
+        <PriceList prices = {this.state.prices}/>
       </div>
     );
   }
