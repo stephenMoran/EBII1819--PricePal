@@ -17,8 +17,10 @@ This is a chrome extension that compares prices between different amazon sites. 
   4. start application
       ```
       yarn build
-      
       ```
+  5. Open chrome browser and navigate to chrome://extensions/
+  6. Select 'load unpacked' and chose build folder within the 'my-extension' folder
+  
   ### Requirements
    ```
    
