@@ -1,5 +1,6 @@
 /*global chrome*/
 import * as Amazon from "./AmazonAPI.js"
+import * as Shipping from "./shipping.js"
 var prices = [];
 var currentGbpRate = null;
 
@@ -44,6 +45,16 @@ export function price(url)
             var id = Amazon.getProductIDFromAmazonProductPageUrl(item[1]);
             item.push(id);
             return item;
+          }
+        ).then(
+          function(item)
+          {
+            var position = getCountryPosition(item[2])
+            console.log(Shipping.getShippingPrices(item[2]));
+            var costs = Shipping.getShippingPrices(item[2]);
+            var cost = costs[position];
+            item.push(cost)
+            return item
           }
         ).then(
           function(item)
@@ -120,11 +131,9 @@ function buildPrices(item)
 
                     if(item[2] == "uk")
                     {
-                      console.log(item[2])
                       convertToGbp(item[0]).then(
                         function(newPrice)
                         {
-                          console.log(newPrice)
                           item[0] = newPrice;
                         }
                       )
@@ -145,11 +154,20 @@ function buildPrices(item)
                     item.push(id);
                     return item;
                   }
+                ).then(
+                  function(item)
+                  {
+                    //assuming were shipping to the country of the visited site
+                    var costs = Shipping.getShippingPrices(currentCountry);
+                    var position = getCountryPosition(item[2]);
+                    var cost = costs[position];
+                    item.push(cost);
+                    return item;
+                  }
                 )
                 .then(
                   function(item)
                   {
-                    console.log(item[0]);
                     if(item[0] != null)
                     {
                       prices.push(item);
@@ -170,6 +188,35 @@ function buildPrices(item)
 
 }
 
+
+function getCountryPosition(country)
+{
+  var position;
+  switch (country) {
+  case 'uk':
+      position = 0
+      break;
+  case 'es':
+        position = 1
+      break;
+  case 'fr':
+        position = 2
+      break;
+  case 'it':
+        position = 3
+      break;
+  case 'de':
+        position = 4
+      break;
+  case 'ire':
+        position = 5
+}
+
+return position;
+
+}
+
+
 //CURRENCY RATES FOR THE UK
 //convert prices to current rate
 function convertToGbp(price)
@@ -183,7 +230,6 @@ function convertToGbp(price)
       function(updatedRate)
       {
         currentPrice = currentPrice/updatedRate;
-        console.log(currentPrice);
         //rounding
         currentPrice = Math.round(currentPrice * 100) / 100;
         return currentPrice;
@@ -201,7 +247,6 @@ function updateGbpRates(rate)
 //calculate current rate
 function gbpToEur()
 {
-  console.log();
 	return fetch('https://api.exchangeratesapi.io/latest?symbols=GBP')
   .then(function(response) {
     return response.json();
