@@ -184,6 +184,8 @@ function convertToGbp(price)
       {
         currentPrice = currentPrice/updatedRate;
         console.log(currentPrice);
+        //rounding
+        currentPrice = Math.round(currentPrice * 100) / 100;
         return currentPrice;
       }
     );
