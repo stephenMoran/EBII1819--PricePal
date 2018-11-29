@@ -80,25 +80,6 @@ export function price(url)
     }
 };
 
-
-function convertToGbp(price)
-{
-  var currentPrice = price;
-  return gbpToEur().then(
-    function(rate)
-    {
-      return updateGbpRates(rate);
-    }).then(
-      function(updatedRate)
-      {
-        currentPrice = currentPrice/updatedRate;
-        console.log(currentPrice);
-        return price;
-      }
-    );
-}
-
-
 //Build price array of other amazon prices
 function buildPrices(item)
 {
@@ -136,8 +117,10 @@ function buildPrices(item)
                 ).then(
                   function(item)
                   {
+
                     if(item[2] == "uk")
                     {
+                      console.log(item[2])
                       convertToGbp(item[0]).then(
                         function(newPrice)
                         {
@@ -187,13 +170,33 @@ function buildPrices(item)
 
 }
 
+//CURRENCY RATES FOR THE UK
+//convert prices to current rate
+function convertToGbp(price)
+{
+  var currentPrice = price;
+  return gbpToEur().then(
+    function(rate)
+    {
+      return updateGbpRates(rate);
+    }).then(
+      function(updatedRate)
+      {
+        currentPrice = currentPrice/updatedRate;
+        console.log(currentPrice);
+        return currentPrice;
+      }
+    );
+}
+
+//update current rate
 function updateGbpRates(rate)
 {
   currentGbpRate = rate;
   return currentGbpRate;
 }
 
-
+//calculate current rate
 function gbpToEur()
 {
   console.log();
