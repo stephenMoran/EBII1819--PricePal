@@ -48,7 +48,6 @@ export function price(url)
         ).then(
           function(item)
           {
-            console.log(item[0]);
             if(item[0] != null)
             {
               prices.push(item);
@@ -58,9 +57,15 @@ export function price(url)
         ).then(
           function(item)
           {
-            return buildPrices(item);
+            return buildPrices(item)
           }
-        )
+        ).then(
+          function()
+          {
+            console.log(prices);
+            return prices;
+          }
+        );
       }
       else
       {
@@ -73,8 +78,6 @@ export function price(url)
         prices.push("Navigate to a valid Amazon webpage");
         return prices;
     }
-    console.log(prices);
-    return prices;
 };
 
 
@@ -96,11 +99,13 @@ function convertToGbp(price)
 }
 
 
+//Build price array of other amazon prices
 function buildPrices(item)
 {
     var currentPrice = item[0];
     var currentCountry = item[2];
     var currentId = item[3];
+    var promise1;
     if(currentPrice != null)
     {
       var countries = ["uk","fr","de","it", "es"];
@@ -110,8 +115,7 @@ function buildPrices(item)
         if(countries[i] != currentCountry)
         {
             var url = Amazon.generateAmazonProductPageUrlForCountry(item[3], countries[i])
-
-            var promise1 = Promise.resolve(url);
+            promise1 = Promise.resolve(url);
             promise1.then(
               function(url)
               {
@@ -137,6 +141,7 @@ function buildPrices(item)
                       convertToGbp(item[0]).then(
                         function(newPrice)
                         {
+                          console.log(newPrice)
                           item[0] = newPrice;
                         }
                       )
@@ -169,14 +174,18 @@ function buildPrices(item)
                   }
                 );
               }
+            ).then(
+              function()
+              {
+                return prices;
+              }
             );
           }
         }
       }
-      return prices;
+      return promise1;
+
 }
-
-
 
 function updateGbpRates(rate)
 {
@@ -184,22 +193,6 @@ function updateGbpRates(rate)
   return currentGbpRate;
 }
 
-
-
-/*
-if(price != null)
-{
-  item.price = price;
-
-  item.url = url;
-  console.log(item.url);
-  return item;
-}
-else
-{
-  return null;
-}
-*/
 
 function gbpToEur()
 {

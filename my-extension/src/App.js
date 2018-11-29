@@ -26,6 +26,7 @@ class App extends Component {
         var amazonPrices = PriceCal.price(url).then(
           function(prices)
           {
+            console.log(prices.toString());
             x.setState({prices: prices});
           }
         );
@@ -42,7 +43,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1></h1>
+        <h1>{this.state.prices}</h1>
         <BestPrice />
         <PriceList prices = {this.state.prices}/>
       </div>

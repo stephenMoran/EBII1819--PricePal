@@ -18,17 +18,11 @@ class PriceList extends React.Component {
       var i;
       for(i = 0; i < this.props.prices.length; i++)
       {
+        console.log(this.props.prices.length);
         console.log(this.props.prices[i]);
       }
-      this.initialiseProps().then(
-        function(prices)
-        {
-          console.log(prices.length);
-          console.log(prices[0][4]);
-        }
-      )
     }
-  }
+  };
 
   initialiseProps()
   {
