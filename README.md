@@ -2,6 +2,7 @@
 This is a chrome extension that compares prices between different amazon sites. We have focused on Amazon. es, .co.uk, de, fr and .it
 
 ## Usage
+
 * Navigate to Amazon product page
 * Open the chrome extension 
 * View prices of this product on other sites plus their shipping costs
@@ -27,3 +28,5 @@ This is a chrome extension that compares prices between different amazon sites. 
   
    ```
     
+  ### Link to extension:
+  https://chrome.google.com/webstore/detail/pricepal/aacofiacafkbpiogdmglkacojggefbck
