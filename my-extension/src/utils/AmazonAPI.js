@@ -72,7 +72,6 @@ export function addAffiliateLinkToUrl(url, country)
 			affliateUrl  = url + "?tag=pricepal09-21";
 			break;
 	}
-	console.log(affliateUrl);
 	return affliateUrl;
 }
 
@@ -102,7 +101,6 @@ export function getPriceFromDoc(response)
 			var parser = new DOMParser();
 			var doc = parser.parseFromString(html, "text/html");
 			return doc
-			//console.log(getPriceFromAmazonProductDetailPage(doc));
 		}).then(function(doc){
 			 return getPriceFromAmazonProductDetailPage(doc);
 		});

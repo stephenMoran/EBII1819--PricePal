@@ -50,7 +50,6 @@ export function price(url)
           function(item)
           {
             var position = getCountryPosition(item[2])
-            console.log(Shipping.getShippingPrices(item[2]));
             var costs = Shipping.getShippingPrices(item[2]);
             var cost = costs[position];
             item.push(cost)
@@ -187,7 +186,6 @@ function buildPrices(item)
       return promise1;
 
 }
-
 
 function getCountryPosition(country)
 {

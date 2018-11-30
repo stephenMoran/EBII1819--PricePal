@@ -7,9 +7,10 @@ class PriceList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.createList = this.createList.bind(this);
+  //  this.createList = this.createList.bind(this);
   }
 
+  /*
   //creating list of items
   createList()
   {
@@ -60,17 +61,54 @@ class PriceList extends React.Component {
     }
   };
 
-  initialiseProps()
-  {
-    var prices = this.props.prices;
-    var promise1 = Promise.resolve(prices);
-    return promise1;
-  }
+*/
 
   render() {
           return (
               <div className="price-list">
-                {this.createList()}
+                <ul>
+                  <li>
+                    <a href="https://www.amazon.co.uk" target="_blank">
+                      <img src=".\imgs\UK.png" alt="UK"/>
+                      &nbsp;UK
+                    </a>
+                    <a2>€38 list price</a2>
+                    <a3>€40</a3>
+                  </li>
+                  <li>
+                    <a href="https://www.amazon.de" target="_blank">
+                      <img src=".\imgs\DE.png" alt="DE"/>
+                      &nbsp;DE
+                    </a>
+                    <a2>€38 list price</a2>
+                    <h3>Total price:</h3
+                    <a3>€41</a3>
+                  </li>
+                  <li>
+                    <a href="https://www.amazon.es" target="_blank">
+                      <img src=".\imgs\ES.png" alt="ES"/>
+                      &nbsp;ES
+                    </a>
+                    <a2>€44 list price</a2>
+                    <a3>€46</a3>
+                  </li>
+                  <li>
+                    <a href="https://www.amazon.fr" target="_blank">
+                      <img src=".\imgs\FR.png" alt="FR"/>
+                      &nbsp;FR
+                    </a>
+                    <a2>€55 list price</a2>
+                    <a3>€67</a3>
+                  </li>
+                  <li>
+                    <a href="https://www.amazon.it" target="_blank">
+                      <img src=".\imgs\IT.png" alt="IT"/>
+                      &nbsp;IT
+                    </a>
+                    <a2>€5500 list price</a2>
+                    <a3>€6700</a3>
+                  </li>
+                </ul>
               </div>
           )
     }
