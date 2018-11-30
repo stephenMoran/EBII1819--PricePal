@@ -42,6 +42,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <head>
+              <link rel="stylesheet" href="App.css"/>
+      </head>
         <h1>
           <img width = "150px" src=".\imgs\Logo.png" alt="PricePal"/>
         </h1>

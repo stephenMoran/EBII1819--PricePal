@@ -10,7 +10,7 @@ class PriceList extends React.Component {
   //  this.createList = this.createList.bind(this);
   }
 
-  /*
+  /*BUG: had to use mock data instead of the create function
   //creating list of items
   createList()
   {

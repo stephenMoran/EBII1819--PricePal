@@ -1,6 +1,6 @@
 {
  "name": "PricePal",
- "description": "Tool that compares prices on Amazon with other well trusted retailers",
+ "description": "Tool that compares prices between European Amazon sites",
  "version": "0.0.0.1",
  "manifest_version": 2,
  "browser_action": {
