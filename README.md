@@ -23,10 +23,7 @@ This is a chrome extension that compares prices between different amazon sites. 
   
   ### Requirements
    ```
-   
+   npm install --save react
   
-   
-  
-   
    ```
     
