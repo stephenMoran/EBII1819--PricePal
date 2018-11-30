@@ -161,9 +161,9 @@ li a2 {
     color: var(--Text-Color);
     text-align: center;
     padding: 10px;
-    text-decoration: none;
     font: 12px arial, sans-serif;
     background-color: var(--Body-Color);
+    font-style: italic;
 }
 
 li a3 {
